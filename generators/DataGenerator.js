@@ -55,16 +55,14 @@ return db.transaction().then(function(transaction) {
 	};
 
 	function editionInsertionProcedure(xmlEdition) {
-		var xmlCoversArray = xmlEdition.imagens.capas;
+		var xmlCoversArray = xmlEdition.imagens[0].capas[0].capa;
 
-		var covers = {};
+		console.log(xmlCoversArray);
 
-		if (xmlCoversArray) {
-			covers = _.reduce(xmlEdition.imagens.capas[0].capa, function(memo, cover) {
-				memo[cover.$.tamanho] = cover._;
-				return memo;
-			}, {});
-		}
+		var covers = _.reduce(xmlCoversArray, function(memo, cover) {
+			memo[cover.$.tamanho] = cover._;
+			return memo;
+		}, {});
 
 		return insertEdition(xmlEdition.$.num, covers, xmlEdition.pdf[0]).then(function(edition) {
 			var xmlCategories = xmlEdition.artigos[0].categoria;

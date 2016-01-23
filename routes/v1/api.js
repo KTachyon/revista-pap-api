@@ -75,7 +75,7 @@ router.use('/categories', require('./categories'));
 router.use(function(request, response) {
 	logger.error("Route was not handled: " + request.originalUrl);
 
-	request.context.rollback(function() { response.status(404).end(); });
+	response.status(404).end();
 });
 
 module.exports = router;
