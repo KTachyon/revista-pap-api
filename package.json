@@ -1,0 +1,27 @@
+{
+  "name": "revista-pap-api",
+  "version": "1.0.0",
+  "description": "API para acesso às edições da revista programar",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Tiago Fael Matos",
+  "license": "MIT",
+  "dependencies": {
+    "bluebird": "^3.1.1",
+    "body-parser": "^1.14.2",
+    "express": "^4.13.3",
+    "intel": "^1.1.0",
+    "lodash": "^4.0.0",
+    "moment": "^2.11.1",
+    "morgan": "^1.6.1",
+    "pg": "^4.4.3",
+    "pg-hstore": "^2.3.2",
+    "pg-native": "^1.10.0",
+    "rekuire": "^0.1.9",
+    "request": "^2.67.0",
+    "sequelize": "^3.17.3",
+    "xml2js": "^0.4.16"
+  }
+}
