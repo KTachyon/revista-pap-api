@@ -23,4 +23,11 @@ articleRouter.get('/:article_id' + uuidRegex, function(request, response) {
 	return ArticleService.get(request.params.article_id).then(defaultMapper).then(function(obj) { response.json(obj); });
 });
 
+// TEXT SEARCH IN CONTEXT
+articleRouter.post('/search', function(request, response) {
+	var ArticleService = ServiceFactory.get('ArticleService', request.context);
+
+	return ArticleService.search(request.body.search).then(defaultMapper).then(function(obj) { response.json(obj); });
+});
+
 module.exports = articleRouter;

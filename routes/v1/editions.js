@@ -25,14 +25,17 @@ function editionCall(method, request, next) {
 	});
 }
 
+editionRouter.use('/last', function(request, response, next) { editionCall('last', request, next); });
 editionRouter.use('/:edition_id' + uuidRegex, function(request, response, next) { editionCall('getByUUID', request, next); });
 editionRouter.use('/:edition_id([0-9]+)', function(request, response, next) { editionCall('getByNumber', request, next); });
 
+editionRouter.use('/last/articles', require('./articles'));
 editionRouter.use('/:edition_id' + uuidRegex + '/articles', require('./articles'));
 editionRouter.use('/:edition_id([0-9]+)/articles', require('./articles'));
 
 function mapFromContextAndRespond(request, response) { return response.json( defaultMapper(request.context.edition) ); }
 
+editionRouter.get('/last', mapFromContextAndRespond);
 editionRouter.get('/:edition_id' + uuidRegex, mapFromContextAndRespond);
 editionRouter.get('/:edition_id([0-9]+)', mapFromContextAndRespond);
 

@@ -5,6 +5,8 @@ var Article = db.models.Article;
 var Edition = db.models.Edition;
 var Category = db.models.Category;
 
+var _ = require('lodash');
+
 var ArticleService = function(context) {
     var getTransaction = context.getTransaction;
 
@@ -14,6 +16,16 @@ var ArticleService = function(context) {
 
             if (context.edition) {
                 query.where = { EditionId : context.edition.get('id') };
+            }
+
+            return Article.findAll(query);
+        },
+
+        getList: function(uuids) {
+            var query = { where : { id : uuids }, include : [ Edition, Category ] };
+
+            if (context.edition) {
+                query.where.EditionId = context.edition.get('id');
             }
 
             return Article.findAll(query);
@@ -34,6 +46,18 @@ var ArticleService = function(context) {
                 }
 
                 return article;
+            });
+        },
+
+        search: function(searchTerms) {
+            var self = this;
+
+            return Article.search(searchTerms).then(function(articles) {
+                var uuids = _.map(articles, function(article) {
+                    return article.get('id');
+                });
+
+                return self.getList(uuids);
             });
         }
     };

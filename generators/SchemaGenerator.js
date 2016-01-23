@@ -35,6 +35,8 @@ return readDirPromise(normalizedPath).then(function(models) {
 }).then(function() {
     return db.sync();
 }).then(function() {
+    return db.models.Article.addFullTextIndex();
+}).then(function() {
 	console.log('Database generation successful!');
 }).catch(function(error) {
 	console.log('Failed!');

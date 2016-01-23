@@ -49,11 +49,6 @@ return db.transaction().then(function(transaction) {
 		return article.save({ transaction : transaction });
 	}
 
-	var har = {
-		method : 'GET',
-		url : 'http://programar.sergioribeiro.com/programar.xml'
-	};
-
 	function editionInsertionProcedure(xmlEdition) {
 		var xmlCoversArray = xmlEdition.imagens[0].capas[0].capa;
 
@@ -92,6 +87,11 @@ return db.transaction().then(function(transaction) {
 			}, Promise.resolve(null));
 		});
 	}
+
+	var har = {
+		method : 'GET',
+		url : 'http://programar.sergioribeiro.com/programar.xml'
+	};
 
 	return harPromise(har).then(function(body) {
 		return parseXMLPromise(body);

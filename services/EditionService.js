@@ -32,6 +32,10 @@ var EditionService = function(context) {
 
                 return edition;
             });
+        },
+
+        last: function() {
+            return Edition.findOne({ order: [ ['number', 'DESC'] ] });
         }
     };
 };
