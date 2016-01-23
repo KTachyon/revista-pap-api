@@ -26,3 +26,15 @@ npm install
 node generator/SchemaGenerator.js
 node generator/DataGenerator.js
 ```
+
+## Executar servidor
+
+`node server.js`
+
+## Pedidos
+
+`curl http://localhost:3000/api/v1/editions`
+`curl http://localhost:3000/api/v1/articles`
+`curl http://localhost:3000/api/v1/categories`
+
+`curl http://localhost:3000/api/v1/editions/11/articles`
